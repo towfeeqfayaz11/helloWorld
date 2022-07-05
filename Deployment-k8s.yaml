@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-deploy
+  labels:
+    app: spring-boot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-pod
+  template:
+    metadata:
+      labels:
+        app: spring-boot-pod
+    spec:
+      containers:
+      - name: spring-boot
+        image: docker.io/towfeeq11/sprig-boot-sample:v1
+        ports:
+        - containerPort: 8080
